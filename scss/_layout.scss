@@ -79,20 +79,20 @@ body {
 }
 .items__title {
   flex: 1;
+  margin: -20px -20px 0;
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 1.4;
 }
 .items__title a {
   display: block;
-  margin: -20px;
   padding: 20px;
 }
 .items__tags {
-  margin: 10px 0 0;
 }
 .items__tag {
   display: inline-block;
+  margin: 5px 5px 0 0;
 }
 .items__tag a {
   display: inline-block;
@@ -101,8 +101,13 @@ body {
   color: #646464;
   font-size: 1.2rem;
 }
+.items__date {
+  margin: 10px 0 0;
+  color: #646464;
+  font-size: 1.2rem;
+}
 .items__url {
-  margin: 20px -20px -20px;
+  margin: 5px -20px -20px;
   border-top: #eee 1px dotted;
 }
 .items__url a {
