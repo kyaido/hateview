@@ -6,9 +6,12 @@
  *
 ------------------------------------- */
 
+html {
+  font-size: 62.5%;
+}
 
 body {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
   line-height: 1.7;
   color: #333;
@@ -26,6 +29,13 @@ a:active,
 a:focus {
   color: #333;
   text-decoration: none;
+}
+
+a {
+  transition: opacity .2s;
+}
+a:hover {
+  opacity: .7;
 }
 
 label {
