@@ -4,6 +4,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS    = require( 'gulp-minify-css' );
 var plumber      = require('gulp-plumber');
 var webserver    = require('gulp-webserver');
+var source       = require('vinyl-source-stream');
+var browserify   = require('browserify');
 
 var AUTOPREFIXER_BROWSERS = [
   'last 2 version', 'Explorer >= 10', 'android >= 4.0'
@@ -17,6 +19,17 @@ gulp.task('sass', function() {
     .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe(minifyCSS())
     .pipe(gulp.dest('css/'));
+});
+
+
+/* js task */
+gulp.task('js', function() {
+  return browserify({
+    entries: ['./js/app.js']
+  })
+  .bundle()
+  .pipe(source('app.min.js'))
+  .pipe(gulp.dest('js'));
 });
 
 
@@ -36,6 +49,7 @@ gulp.task('webserver', function() {
 /* watch task */
 gulp.task('watch', function() {
   gulp.watch(['scss/**/*.scss'], ['sass']);
+  gulp.watch(['js/app.js'], ['js']);
 });
 
 
