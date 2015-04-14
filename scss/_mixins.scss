@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+
+// mediaquery
+@mixin add-max-query($point) {
+  @media screen and (max-width: $point) { @content; }
+}
+@mixin add-min-query($point) {
+  @media screen and (min-width: $point) { @content; }
+}
