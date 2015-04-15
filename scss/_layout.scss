@@ -70,14 +70,31 @@ body {
   flex-wrap: wrap;
   padding: 0 0 40px;
 }
+.items.fade-enter {
+  opacity: 1;
+}
+.items.fade-leave {
+  opacity: 0;
+}
 .items__item {
   display: flex;
   width: 33.33333333%;
-  margin: 40px 0 0;
-  padding: 0 20px;
+  margin: 50px 0 0;
+  padding: 0 25px;
   box-sizing: border-box;
+  transition: all .6s;
   @include add-max-query(640px) {
     width: 100%;
+  }
+}
+.items__item.fade-enter {
+  // add class by vue.js
+  opacity: 0;
+  transform: translateY(20px);
+}
+@for $i from 1 through 20 {
+  .items__item:nth-child(20n + #{$i}) {
+    transition-delay: $i * .05s;
   }
 }
 .items__inner {
@@ -106,12 +123,14 @@ body {
   display: inline-block;
   margin: 5px 5px 0 0;
 }
-.items__tag a {
+.items__tag a,
+.items__tag span {
   display: inline-block;
   padding: 2px 5px;
   background-color: #eee;
   color: #646464;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 .items__date {
   margin: 10px 0 0;
@@ -138,10 +157,12 @@ body {
   margin: 40px 0;
   text-align: center;
 }
-.more a {
+.more a,
+.more button {
   display: inline-block;
   padding: 15px 40px;
   background-color: #00a5de;
+  border: none;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
   color: #fff;
   font-weight: bold;

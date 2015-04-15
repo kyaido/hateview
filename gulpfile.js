@@ -1,7 +1,7 @@
 var gulp         = require('gulp');
 var sass         = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var minifyCSS    = require( 'gulp-minify-css' );
+var minifyCSS    = require('gulp-minify-css');
 var plumber      = require('gulp-plumber');
 var webserver    = require('gulp-webserver');
 var source       = require('vinyl-source-stream');
@@ -31,8 +31,8 @@ gulp.task('js', function() {
   })
   .bundle()
   .pipe(source('app.min.js'))
-  .pipe(buffer())
-  .pipe(uglify())
+  // .pipe(buffer())
+  // .pipe(uglify())
   .pipe(gulp.dest('js'));
 });
 
