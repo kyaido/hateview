@@ -6,6 +6,8 @@ var plumber      = require('gulp-plumber');
 var webserver    = require('gulp-webserver');
 var source       = require('vinyl-source-stream');
 var browserify   = require('browserify');
+var buffer       = require('vinyl-buffer');
+var uglify       = require('gulp-uglify');
 
 var AUTOPREFIXER_BROWSERS = [
   'last 2 version', 'Explorer >= 10', 'android >= 4.0'
@@ -29,6 +31,8 @@ gulp.task('js', function() {
   })
   .bundle()
   .pipe(source('app.min.js'))
+  .pipe(buffer())
+  .pipe(uglify())
   .pipe(gulp.dest('js'));
 });
 
