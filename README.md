@@ -12,6 +12,7 @@ hateview
 * ルーティング
 * 
 
+
 ## REF
 
 ### hatebu API
@@ -27,6 +28,12 @@ http://blog.56doc.net/Entry/472/
 ### gulp, browserify
 
 http://qiita.com/seanchas_t/items/96fbb63e5fe36f94a42e
+
+### infinite scroll
+
+http://int128.hatenablog.com/entry/2015/02/18/230206
+
+http://qiita.com/hashrock/items/cf3abd70a56c5c97ccb4
 
 
 ## MEMO
