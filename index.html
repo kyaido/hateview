@@ -26,14 +26,14 @@
       <div class="items">
         
         <div class="items__item" v-repeat="bookmark" v-transition="fade">
-          <div class="items__inner">
-            <h2 class="items__title"><a href="{{link}}" target="_blank">{{title}}</a></h2>
+          <a class="items__inner" href="{{link}}" target="_blank">
+            <h2 class="items__title">{{title}}</h2>
             <ul class="items__tags">
               <li class="items__tag" v-repeat="tag: categories"><span>{{tag}}</span></li>
             </ul>
             <div class="items__date">{{publishedDate | formatDate}}</div>
-            <div class="items__url"><a href="{{link}}" target="_blank">{{link}}</a></div>
-          </div>
+            <div class="items__url">{{link}}</div>
+          </a>
         </div>
         
       </div>
