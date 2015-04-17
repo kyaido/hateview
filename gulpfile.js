@@ -30,6 +30,7 @@ gulp.task('js', function() {
     entries: ['./js/app.js']
   })
   .bundle()
+  .pipe(plumber())
   .pipe(source('app.min.js'))
   // .pipe(buffer())
   // .pipe(uglify())
