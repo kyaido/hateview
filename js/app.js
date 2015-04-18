@@ -1,38 +1,23 @@
 var $ = require('jquery');
 var Vue = require('vue');
 var moment = require('moment');
-
-
+var _ = require('underscore');
 
 
 var vm = new Vue({
   el: '.js-app',
   
   data: {
-    num:      0,
-    count:    20,
-    user:     'kyaido',
-    position: 0,
-    bookmark: []
-  },
-  
-  ready: function() {
-    var self = this;
-    document.onscroll = function(e){
-      self.position = document.documentElement.scrollTop || document.body.scrollTop;
-      
-      var height = $(window).height();
-      var scrollTop = $(window).scrollTop();
-      var documentHeight = $(document).height();
-      if (documentHeight === height + scrollTop) {
-        self.search();
-      }
-      
-    };
+    num:       0,
+    count:     20,
+    user:      'kyaido',
+    onLoading: false,
+    bookmark:  []
   },
   
   events: {
-    'hook:created': 'search'
+    'hook:created': 'search',
+    'hook:ready':   'scroll'
   },
   
   filters: {
@@ -64,9 +49,31 @@ var vm = new Vue({
           }
           self.num++;
           btn.classList.remove('loading');
+          self.onLoading = false;
         }, 1000);
       });
       
+    },
+    scroll: function(e) {
+      var self = this;
+      
+      document.addEventListener('scroll', function(e) {
+        
+        // self.position = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        var height = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        var documentHeight = $(document).height();
+        
+        if (documentHeight - 50 < height + scrollTop) {
+          if (self.onLoading) {
+            return;
+          }
+          console.log('do');
+          self.search();
+          self.onLoading = true;
+        }
+      });
     }
   }
 
