@@ -32,8 +32,8 @@ gulp.task('js', function() {
   .bundle()
   .pipe(plumber())
   .pipe(source('app.min.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
+  .pipe(buffer())
+  .pipe(uglify())
   .pipe(gulp.dest('js'));
 });
 
