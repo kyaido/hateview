@@ -59,10 +59,15 @@ var vm = new Vue({
       var self = this;
       
       function autopager() {
-        var height = $(window).height();
-        var scrollTop = $(window).scrollTop();
-        var documentHeight = $(document).height();
+        var height = window.innerHeight; // $(window).height()
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // $(window).scrollTop()
+        var documentHeight = document.documentElement.offsetHeight; // $(document).height()
         var buffer = 100;
+        
+        console.log('height:' + height);
+        console.log('scrollTop:' + scrollTop);
+        console.log('documentHeight:' + documentHeight);
+        
         if (documentHeight - buffer < height + scrollTop) {
           if (self.onLoading) {
             return;
@@ -72,8 +77,8 @@ var vm = new Vue({
         }
       }
       
-      var debounceed = _.debounce(autopager, 100);
-      document.addEventListener('scroll', debounceed);
+      var debounced = _.debounce(autopager, 100);
+      document.addEventListener('scroll', debounced);
     }
   }
 
