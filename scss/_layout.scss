@@ -53,6 +53,45 @@ body {
 }
 
 
+/* userSearch */
+.userSearch {
+  clear: both;
+  margin: 40px 0;
+  text-align: center;
+}
+.userSearch__field {
+  border: none;
+  width: 400px;
+  height: 44px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: #d2d2d2 1px solid;
+  color: #333;
+  font-size: 2.0rem;
+}
+.userSearch__btn {
+  border: none;
+  height: 44px;
+  margin: 0 0 0 5px;
+  padding: 0 10px;
+  background-color: #00a5de;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 2.0rem;
+  line-height: 44px;
+}
+
+
+/* items */
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0 40px;
+}
+
+
 /* items */
 .items {
   display: flex;
@@ -74,6 +113,9 @@ body {
   // add class by vue.js
   opacity: 0;
   transform: translateY(20px);
+}
+.items__item.fade-leave {
+  display: none;
 }
 @for $i from 1 through 20 {
   .items__item:nth-child(20n + #{$i}) {

@@ -22,6 +22,11 @@
   <div id="content" class="js-app" v-cloak>
     <main id="main" role="main">
       
+      <div class="userSearch">
+        <input type="text" class="userSearch__field" placeholder="input user name" v-model="user">
+        <button class="userSearch__btn" v-on="click: userSearch">user search</button>
+      </div>
+      
       <div class="items">
         
         <div class="items__item" v-repeat="bookmark" v-transition="fade">

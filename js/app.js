@@ -16,7 +16,7 @@ var vm = new Vue({
   },
   
   events: {
-    'hook:created': 'search',
+    'hook:created': 'userSearch',
     'hook:ready':   'scroll'
   },
   
@@ -64,9 +64,9 @@ var vm = new Vue({
         var documentHeight = document.documentElement.offsetHeight; // $(document).height()
         var buffer = 100;
         
-        console.log('height:' + height);
-        console.log('scrollTop:' + scrollTop);
-        console.log('documentHeight:' + documentHeight);
+        // console.log('height:' + height);
+        // console.log('scrollTop:' + scrollTop);
+        // console.log('documentHeight:' + documentHeight);
         
         if (documentHeight - buffer < height + scrollTop) {
           if (self.onLoading) {
@@ -79,6 +79,14 @@ var vm = new Vue({
       
       var debounced = _.debounce(autopager, 100);
       document.addEventListener('scroll', debounced);
+    },
+    deleteBookmark: function() {
+      this.num = 0;
+      this.bookmark = [];
+    },
+    userSearch: function() {
+      this.deleteBookmark();
+      this.search();
     }
   }
 
