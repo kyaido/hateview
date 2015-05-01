@@ -19,7 +19,7 @@ gulp.task('sass', function() {
     .pipe(plumber())
     .pipe(sass( { errLogToConsole: true } ))
     .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-    .pipe(minifyCSS())
+    .pipe(minifyCSS({advanced: false}))
     .pipe(gulp.dest('css/'));
 });
 
