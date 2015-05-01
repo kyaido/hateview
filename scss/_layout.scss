@@ -92,6 +92,13 @@ body {
     transition-delay: $i * .05s;
   }
 }
+.items__item--error {
+  width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  font-size: 3.0rem;
+  text-align: center;
+}
 .items__inner {
   display: flex;
   flex-direction: column;
@@ -235,12 +242,21 @@ body {
   opacity: 1;
   transition-delay: 0s;
 }
-.overlay__field {
+.overlay__body {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 80%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+.overlay__label {
+  color: rgba(#fff, .8);
+  font-size: 2.0rem;
+}
+.overlay__field {
+  width: 100%;
   height: 100px;
   margin: 0;
   padding: 10px;
@@ -250,7 +266,6 @@ body {
   box-sizing: border-box;
   color: rgba(#fff, .8);
   font-size: 4.0rem;
-  text-align: center;
 }
 .overlay__close {
   position: fixed;

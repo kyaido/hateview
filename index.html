@@ -35,9 +35,14 @@
           </a>
         </div>
         
+        <div class="items__item--error" v-show="errorMode">
+          <strong>Error!</strong><br>
+          There is a possibility that the username is wrong.
+        </div>
+        
       </div>
       
-      <p class="more"><button v-on="click: search">MORE</button></p>
+      <p class="more"><button v-on="click: search" v-show="!errorMode">MORE</button></p>
       
       <button class="userSearch" v-on="click: changeSearchMode">user search</button>
       
@@ -45,7 +50,10 @@
     
     <div class="overlay" v-class="is-show: searchMode">
       <button class="overlay__close" v-on="click: changeSearchMode">close</button>
-      <input type="text" class="overlay__field" placeholder="Type user name and press enter key!" v-model="user" v-on="change: userSearch" lazy>
+      <div class="overlay__body">
+        <p class="overlay__label">Type user name and press enter key!</p>
+        <input type="text" class="overlay__field" v-model="user" v-on="change: userSearch" lazy>
+      </div>
     </div>
     
   </div>

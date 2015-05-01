@@ -12,8 +12,9 @@ var vm = new Vue({
     count:      20,
     user:       'kyaido',
     onLoading:  false,
-    bookmark:   [],
-    searchMode: false
+    searchMode: false,
+    errorMode:      false,
+    bookmark:   []
   },
   
   events: {
@@ -35,6 +36,7 @@ var vm = new Vue({
       var url  = base + self.user + '/rss?of=' + (self.num * self.count) + '&num=-1';
       var loadingClass = 'is-loading';
       btn.classList.add(loadingClass);
+      self.errorMode = false;
       
       $.ajax({
         url: url,
@@ -43,16 +45,21 @@ var vm = new Vue({
         cache: false
       })
       .done(function(data){
-        setTimeout(function() {
-          var item = data.responseData.feed.entries;
-          var len  = item.length;
-          for(var i = 0; i < len; i++) {
-            self.bookmark.push(item[i]);
-          }
-          self.num++;
-          btn.classList.remove(loadingClass);
-          self.onLoading = false;
-        }, 1000);
+        if(data.responseData) {
+          setTimeout(function() {
+            var item = data.responseData.feed.entries;
+            var len  = item.length;
+            for(var i = 0; i < len; i++) {
+              self.bookmark.push(item[i]);
+            }
+            self.num++;
+            btn.classList.remove(loadingClass);
+            self.onLoading = false;
+          }, 1000);
+        }
+        else {
+          self.errorMode = true;
+        }
       });
       
     },
@@ -85,7 +92,7 @@ var vm = new Vue({
       if(this.searchMode) {
         setTimeout(function() {
           // delay css transition time
-          document.querySelectorAll('.overlay__field')[0].focus();
+          document.querySelector('.overlay__field').focus();
         }, 200);
       }
     },
