@@ -22,11 +22,6 @@
   <div id="content" class="js-app" v-cloak>
     <main id="main" role="main">
       
-      <div class="userSearch">
-        <input type="text" class="userSearch__field" placeholder="input user name" v-model="user">
-        <button class="userSearch__btn" v-on="click: userSearch">user search</button>
-      </div>
-      
       <div class="items">
         
         <div class="items__item" v-repeat="bookmark" v-transition="fade">
@@ -44,7 +39,15 @@
       
       <p class="more"><button v-on="click: search">MORE</button></p>
       
+      <button class="userSearch" v-on="click: changeSearchMode">user search</button>
+      
     </main>
+    
+    <div class="overlay" v-class="is-show: searchMode">
+      <button class="overlay__close" v-on="click: changeSearchMode">close</button>
+      <input type="text" class="overlay__field" placeholder="Type user name and press enter key!" v-model="user" v-on="change: userSearch" lazy>
+    </div>
+    
   </div>
   
 </div>

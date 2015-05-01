@@ -8,15 +8,16 @@ var vm = new Vue({
   el: '.js-app',
   
   data: {
-    num:       0,
-    count:     20,
-    user:      'kyaido',
-    onLoading: false,
-    bookmark:  []
+    num:        0,
+    count:      20,
+    user:       'kyaido',
+    onLoading:  false,
+    bookmark:   [],
+    searchMode: false
   },
   
   events: {
-    'hook:created': 'userSearch',
+    'hook:created': 'search',
     'hook:ready':   'scroll'
   },
   
@@ -64,10 +65,6 @@ var vm = new Vue({
         var documentHeight = document.documentElement.offsetHeight; // $(document).height()
         var buffer = 100;
         
-        // console.log('height:' + height);
-        // console.log('scrollTop:' + scrollTop);
-        // console.log('documentHeight:' + documentHeight);
-        
         if (documentHeight - buffer < height + scrollTop) {
           if (self.onLoading) {
             return;
@@ -80,6 +77,18 @@ var vm = new Vue({
       var debounced = _.debounce(autopager, 100);
       document.addEventListener('scroll', debounced);
     },
+    changeSearchMode: function() {
+      this.searchMode = !this.searchMode;
+      this.focusSearchField();
+    },
+    focusSearchField: function() {
+      if(this.searchMode) {
+        setTimeout(function() {
+          // delay css transition time
+          document.querySelectorAll('.overlay__field')[0].focus();
+        }, 200);
+      }
+    },
     deleteBookmark: function() {
       this.num = 0;
       this.bookmark = [];
@@ -87,6 +96,7 @@ var vm = new Vue({
     userSearch: function() {
       this.deleteBookmark();
       this.search();
+      this.changeSearchMode();
     }
   }
 
